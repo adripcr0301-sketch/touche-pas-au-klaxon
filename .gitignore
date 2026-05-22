@@ -1,0 +1,38 @@
+# Dépendances
+/vendor/
+/node_modules/
+
+# Environnement
+.env
+.env.local
+*.env
+
+# Logs
+*.log
+/logs/
+
+# Cache
+/cache/
+/tmp/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Ressources brief (non versionnées)
+téléchargement.pdf
+/Annexes/
+objectifs.md
+
+# PHPStan
+phpstan.neon.dist
+
+# PHPUnit
+.phpunit.result.cache
+/coverage/
