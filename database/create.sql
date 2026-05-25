@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS trajets (
         REFERENCES agences(id_agence) ON UPDATE CASCADE ON DELETE RESTRICT,
     CONSTRAINT fk_trajet_user       FOREIGN KEY (id_user)
         REFERENCES users(id_user) ON UPDATE CASCADE ON DELETE RESTRICT,
-    CONSTRAINT chk_agences_diff     CHECK (id_agence_depart <> id_agence_arrivee),
+    -- NOTE MySQL 8 : les colonnes FK ne peuvent pas être dans un CHECK comparatif
+    -- La règle depart <> arrivee est validée côté PHP (TrajetController)
     CONSTRAINT chk_dates            CHECK (gdh_arrivee > gdh_depart),
     CONSTRAINT chk_places_dispo     CHECK (places_dispo >= 0 AND places_dispo <= places_total)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
