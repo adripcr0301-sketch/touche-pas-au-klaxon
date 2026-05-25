@@ -1,0 +1,75 @@
+// =============================================================
+// Touche Pas au Klaxon — Feuille de styles principale
+// =============================================================
+// Palette imposée (brief p.2) :
+//   #f1f8fc  fond clair
+//   #0074c7  bleu primaire
+//   #00497c  bleu foncé
+//   #384050  gris foncé (header/footer)
+//   #cd2c2e  rouge (danger)
+//   #82b864  vert (succès)
+// =============================================================
+
+// --- Surcharge des variables Bootstrap AVANT l'import ---
+$primary:   #0074c7;
+$secondary: #00497c;
+$danger:    #cd2c2e;
+$success:   #82b864;
+$dark:      #384050;
+$light:     #f1f8fc;
+
+$body-bg:           $light;
+$navbar-dark-bg:    $dark;
+$font-family-base:  system-ui, -apple-system, sans-serif;
+
+// --- Import Bootstrap ---
+@import "bootstrap/scss/bootstrap";
+
+// --- Styles personnalisés ---
+
+// Header
+.navbar {
+    background-color: $dark !important;
+    border-radius: 0.5rem;
+    margin: 0.75rem;
+}
+
+.navbar-brand {
+    color: $primary !important;
+    font-weight: 700;
+    font-style: italic;
+}
+
+// Tableau des trajets
+.table thead {
+    background-color: $dark;
+    color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba($primary, 0.05);
+}
+
+// Message flash
+.flash-message {
+    background-color: #e9ecef;
+    border-left: 4px solid $primary;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+
+// Footer
+footer {
+    background-color: $dark;
+    color: #adb5bd;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+// Boutons d'action dans le tableau
+.btn-action {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.85rem;
+}
