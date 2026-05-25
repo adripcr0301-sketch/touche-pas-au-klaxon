@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars(APP_NAME) ?></title>
 
-    <!-- Bootstrap CSS (CDN) — sera remplacé par le CSS compilé Sass en Phase 6 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
+    <!-- Bootstrap Icons (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <!-- CSS personnalisé -->
+    <!-- CSS compilé (Bootstrap + styles personnalisés via Sass) -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/main.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
