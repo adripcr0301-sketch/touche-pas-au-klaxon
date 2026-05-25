@@ -45,11 +45,12 @@ $router->post('/login', 'AuthController@login');
 $router->get('/logout', 'AuthController@logout');
 
 // ---- Routes utilisateur connecté ----
+// Syntaxe v3 : :id = (\d+)
 $router->get('/trajets/creer',                   'TrajetController@create');
 $router->post('/trajets/creer',                  'TrajetController@store');
-$router->get('/trajets/(:num)/modifier',         'TrajetController@edit');
-$router->post('/trajets/(:num)/modifier',        'TrajetController@update');
-$router->post('/trajets/(:num)/supprimer',       'TrajetController@destroy');
+$router->get('/trajets/:id/modifier',            'TrajetController@edit');
+$router->post('/trajets/:id/modifier',           'TrajetController@update');
+$router->post('/trajets/:id/supprimer',          'TrajetController@destroy');
 
 // ---- Routes administrateur ----
 $router->get('/admin',                           'AdminController@dashboard');
@@ -57,10 +58,10 @@ $router->get('/admin/utilisateurs',              'AdminController@users');
 $router->get('/admin/agences',                   'AdminController@agences');
 $router->get('/admin/agences/creer',             'AdminController@createAgence');
 $router->post('/admin/agences/creer',            'AdminController@storeAgence');
-$router->get('/admin/agences/(:num)/modifier',   'AdminController@editAgence');
-$router->post('/admin/agences/(:num)/modifier',  'AdminController@updateAgence');
-$router->post('/admin/agences/(:num)/supprimer', 'AdminController@destroyAgence');
+$router->get('/admin/agences/:id/modifier',      'AdminController@editAgence');
+$router->post('/admin/agences/:id/modifier',     'AdminController@updateAgence');
+$router->post('/admin/agences/:id/supprimer',    'AdminController@destroyAgence');
 $router->get('/admin/trajets',                   'AdminController@trajets');
-$router->post('/admin/trajets/(:num)/supprimer', 'AdminController@destroyTrajet');
+$router->post('/admin/trajets/:id/supprimer',    'AdminController@destroyTrajet');
 
 $router->run();
