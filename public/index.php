@@ -29,7 +29,14 @@ session_start();
 // --- Routeur ---
 use Buki\Router\Router;
 
+// base_folder : indique au routeur le préfixe URL de l'application
+// ex: APP_URL = http://localhost/klaxon → basePath = /klaxon
+// → le routeur retire /klaxon de REQUEST_URI avant de matcher les routes
+$basePath   = parse_url($_ENV['APP_URL'], PHP_URL_PATH) ?? '';
+$baseFolder = ($_SERVER['DOCUMENT_ROOT'] ?? '') . rtrim($basePath, '/');
+
 $router = new Router([
+    'base_folder' => $baseFolder,
     'paths' => [
         'controllers' => ROOT_PATH . '/app/Controllers',
     ],
