@@ -59,5 +59,4 @@ AGENCE ──(0,n)──[ DEPART_DE ]──(1,1)── TRAJET ──(1,1)──[
 
 ---
 
-> **Note livrable :** Ce fichier sert de base pour générer le MCD visuel (ex. avec [Looping](https://www.looping-mcd.fr/) ou draw.io).
-> Le fichier image final (PNG/PDF) doit être ajouté dans ce dossier sous le nom `mcd.png`.
+
