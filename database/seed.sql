@@ -65,20 +65,21 @@ INSERT INTO users (nom, prenom, telephone, email, password, role) VALUES
 --   - Trajet complet (places_dispo=0, non visible visiteur)
 --   - Trajet passé (non visible visiteur)
 -- -------------------------------------------------------------
+-- Conversion en heures pour éviter INTERVAL x DAY + INTERVAL y HOUR (non supporté MySQL)
+-- départ  | arrivée  | total_h = jours*24 + heures_trajet
 INSERT INTO trajets (gdh_depart, gdh_arrivee, places_total, places_dispo, id_agence_depart, id_agence_arrivee, id_user) VALUES
     -- Trajets futurs avec places disponibles (visibles)
-    (DATE_ADD(NOW(), INTERVAL 1 DAY),  DATE_ADD(NOW(), INTERVAL 1 DAY  + INTERVAL 3 HOUR),  4, 3, 1, 2,  1),  -- Paris → Lyon (Alexandre)
-    (DATE_ADD(NOW(), INTERVAL 2 DAY),  DATE_ADD(NOW(), INTERVAL 2 DAY  + INTERVAL 4 HOUR),  3, 2, 2, 3,  2),  -- Lyon → Marseille (Sophie)
-    (DATE_ADD(NOW(), INTERVAL 3 DAY),  DATE_ADD(NOW(), INTERVAL 3 DAY  + INTERVAL 6 HOUR),  5, 4, 1, 9,  3),  -- Paris → Bordeaux (Julien)
-    (DATE_ADD(NOW(), INTERVAL 5 DAY),  DATE_ADD(NOW(), INTERVAL 5 DAY  + INTERVAL 5 HOUR),  3, 1, 7, 1,  4),  -- Strasbourg → Paris (Camille)
-    (DATE_ADD(NOW(), INTERVAL 7 DAY),  DATE_ADD(NOW(), INTERVAL 7 DAY  + INTERVAL 4 HOUR),  6, 5, 6, 1,  5),  -- Nantes → Paris (Lucie)
-    (DATE_ADD(NOW(), INTERVAL 10 DAY), DATE_ADD(NOW(), INTERVAL 10 DAY + INTERVAL 2 HOUR),  4, 3, 9, 4,  6),  -- Bordeaux → Toulouse (Thomas)
-    (DATE_ADD(NOW(), INTERVAL 14 DAY), DATE_ADD(NOW(), INTERVAL 14 DAY + INTERVAL 3 HOUR),  3, 2, 10, 2, 7),  -- Lille → Lyon (Chloé)
-    (DATE_ADD(NOW(), INTERVAL 20 DAY), DATE_ADD(NOW(), INTERVAL 20 DAY + INTERVAL 2 HOUR),  4, 4, 5, 3,  8),  -- Nice → Marseille (Maxime)
-    (DATE_ADD(NOW(), INTERVAL 30 DAY), DATE_ADD(NOW(), INTERVAL 30 DAY + INTERVAL 7 HOUR),  5, 2, 5, 1,  9),  -- Nice → Paris (Laura)
-    (DATE_ADD(NOW(), INTERVAL 45 DAY), DATE_ADD(NOW(), INTERVAL 45 DAY + INTERVAL 3 HOUR),  3, 3, 12, 2, 10), -- Reims → Lyon (Antoine)
+    (DATE_ADD(NOW(), INTERVAL 24  HOUR), DATE_ADD(NOW(), INTERVAL 27  HOUR), 4, 3, 1,  2,  1),  -- Paris → Lyon       (Alexandre)  +1j / +1j3h
+    (DATE_ADD(NOW(), INTERVAL 48  HOUR), DATE_ADD(NOW(), INTERVAL 52  HOUR), 3, 2, 2,  3,  2),  -- Lyon → Marseille   (Sophie)     +2j / +2j4h
+    (DATE_ADD(NOW(), INTERVAL 72  HOUR), DATE_ADD(NOW(), INTERVAL 78  HOUR), 5, 4, 1,  9,  3),  -- Paris → Bordeaux   (Julien)     +3j / +3j6h
+    (DATE_ADD(NOW(), INTERVAL 120 HOUR), DATE_ADD(NOW(), INTERVAL 125 HOUR), 3, 1, 7,  1,  4),  -- Strasbourg → Paris (Camille)    +5j / +5j5h
+    (DATE_ADD(NOW(), INTERVAL 168 HOUR), DATE_ADD(NOW(), INTERVAL 172 HOUR), 6, 5, 6,  1,  5),  -- Nantes → Paris     (Lucie)      +7j / +7j4h
+    (DATE_ADD(NOW(), INTERVAL 240 HOUR), DATE_ADD(NOW(), INTERVAL 242 HOUR), 4, 3, 9,  4,  6),  -- Bordeaux → Toulouse(Thomas)    +10j / +10j2h
+    (DATE_ADD(NOW(), INTERVAL 336 HOUR), DATE_ADD(NOW(), INTERVAL 339 HOUR), 3, 2, 10, 2,  7),  -- Lille → Lyon       (Chloé)     +14j / +14j3h
+    (DATE_ADD(NOW(), INTERVAL 480 HOUR), DATE_ADD(NOW(), INTERVAL 482 HOUR), 4, 4, 5,  3,  8),  -- Nice → Marseille   (Maxime)    +20j / +20j2h
+    (DATE_ADD(NOW(), INTERVAL 720 HOUR), DATE_ADD(NOW(), INTERVAL 727 HOUR), 5, 2, 5,  1,  9),  -- Nice → Paris       (Laura)     +30j / +30j7h
+    (DATE_ADD(NOW(), INTERVAL 1080 HOUR),DATE_ADD(NOW(), INTERVAL 1083 HOUR),3, 3, 12, 2,  10), -- Reims → Lyon       (Antoine)   +45j / +45j3h
     -- Trajet complet (places_dispo=0 — NON visible en page d'accueil)
-    (DATE_ADD(NOW(), INTERVAL 4 DAY),  DATE_ADD(NOW(), INTERVAL 4 DAY  + INTERVAL 2 HOUR),  2, 0, 11, 6, 11), -- Rennes → Nantes complet (Emma)
-    -- Trajet passé (NON visible en page d'accueil)
-    -- Départ il y a 48h, arrivée il y a 45h (= 48h - 3h de trajet)
-    (DATE_SUB(NOW(), INTERVAL 48 HOUR), DATE_SUB(NOW(), INTERVAL 45 HOUR), 4, 2, 3, 5, 12);  -- Marseille → Nice passé (Louis)
+    (DATE_ADD(NOW(), INTERVAL 96  HOUR), DATE_ADD(NOW(), INTERVAL 98  HOUR), 2, 0, 11, 6,  11), -- Rennes → Nantes complet (Emma)  +4j / +4j2h
+    -- Trajet passé (NON visible en page d'accueil) — départ -48h, arrivée -45h
+    (DATE_SUB(NOW(), INTERVAL 48  HOUR), DATE_SUB(NOW(), INTERVAL 45  HOUR), 4, 2, 3,  5,  12); -- Marseille → Nice passé (Louis)
