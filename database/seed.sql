@@ -80,4 +80,5 @@ INSERT INTO trajets (gdh_depart, gdh_arrivee, places_total, places_dispo, id_age
     -- Trajet complet (places_dispo=0 — NON visible en page d'accueil)
     (DATE_ADD(NOW(), INTERVAL 4 DAY),  DATE_ADD(NOW(), INTERVAL 4 DAY  + INTERVAL 2 HOUR),  2, 0, 11, 6, 11), -- Rennes → Nantes complet (Emma)
     -- Trajet passé (NON visible en page d'accueil)
-    (DATE_SUB(NOW(), INTERVAL 2 DAY),  DATE_SUB(NOW(), INTERVAL 2 DAY  - INTERVAL 3 HOUR),  4, 2, 3, 5, 12);  -- Marseille → Nice passé (Louis)
+    -- Départ il y a 48h, arrivée il y a 45h (= 48h - 3h de trajet)
+    (DATE_SUB(NOW(), INTERVAL 48 HOUR), DATE_SUB(NOW(), INTERVAL 45 HOUR), 4, 2, 3, 5, 12);  -- Marseille → Nice passé (Louis)

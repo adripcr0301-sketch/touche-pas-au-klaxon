@@ -77,11 +77,12 @@ class AgenceModel extends Model
      */
     public function isUsed(int $id): bool
     {
+        // Deux paramètres distincts car PDO ne garantit pas la répétition du même nom
         $stmt = $this->db->prepare(
             'SELECT COUNT(*) FROM trajets
-             WHERE id_agence_depart = :id OR id_agence_arrivee = :id'
+             WHERE id_agence_depart = :id1 OR id_agence_arrivee = :id2'
         );
-        $stmt->execute([':id' => $id]);
+        $stmt->execute([':id1' => $id, ':id2' => $id]);
         return (int) $stmt->fetchColumn() > 0;
     }
 }

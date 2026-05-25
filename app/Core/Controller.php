@@ -25,9 +25,10 @@ abstract class Controller
      */
     protected function render(string $view, array $data = []): void
     {
-        $viewFile = ROOT_PATH . '/app/Views/' . $view . '.php';
+        // Préfixe __ pour éviter toute collision avec les clés de $data via extract()
+        $__viewFile = ROOT_PATH . '/app/Views/' . $view . '.php';
 
-        if (!file_exists($viewFile)) {
+        if (!file_exists($__viewFile)) {
             throw new RuntimeException("Vue introuvable : {$view}");
         }
 
