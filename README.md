@@ -278,6 +278,3 @@ touche-pas-au-klaxon/
 
 ---
 
-## Licence
-
-Projet pédagogique — CEF Bruxelles.
