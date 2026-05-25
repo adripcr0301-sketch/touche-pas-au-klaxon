@@ -1,0 +1,30 @@
+{
+  "name": "mvc",
+  "version": "1.0.0",
+  "description": "Application de covoiturage intranet développée en PHP avec une architecture MVC.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "sass:build": "sass resources/scss/main.scss public/assets/css/main.css --load-path=node_modules --style=compressed --no-source-map --silence-deprecation=import,global-builtin,color-functions,if-function",
+    "sass:dev":   "sass resources/scss/main.scss public/assets/css/main.css --load-path=node_modules --watch --silence-deprecation=import,global-builtin,color-functions,if-function"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adripcr0301-sketch/touche-pas-au-klaxon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/adripcr0301-sketch/touche-pas-au-klaxon/issues"
+  },
+  "homepage": "https://github.com/adripcr0301-sketch/touche-pas-au-klaxon#readme",
+  "devDependencies": {
+    "bootstrap": "^5.3.8",
+    "sass": "^1.100.0"
+  }
+}
