@@ -1,0 +1,53 @@
+/* =============================================================
+   Touche Pas au Klaxon — CSS personnalisé
+   Palette : #f1f8fc | #0074c7 | #00497c | #384050 | #cd2c2e | #82b864
+   Ce fichier sera généré par Sass en Phase 6.
+   ============================================================= */
+
+body {
+    background-color: #f1f8fc;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #384050 !important;
+}
+
+.navbar-brand {
+    color: #0074c7 !important;
+}
+
+/* Tableau */
+.table thead {
+    background-color: #384050;
+    color: #ffffff;
+}
+
+/* Message flash */
+.flash-message {
+    background-color: #e9ecef;
+    border-left: 4px solid #0074c7;
+}
+
+/* Footer */
+footer {
+    background-color: #384050;
+    color: #adb5bd;
+    text-align: center;
+}
+
+/* Boutons d'action */
+.btn-action {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.85rem;
+}
+
+/* Bouton primary → couleur palette */
+.btn-primary {
+    background-color: #0074c7;
+    border-color: #0074c7;
+}
+.btn-primary:hover {
+    background-color: #00497c;
+    border-color: #00497c;
+}
